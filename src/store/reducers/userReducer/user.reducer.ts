@@ -1,52 +1,51 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+import { IUser } from '@api/entities/user/user.types.ts'
 import {
 	IPostWithComments,
 	SetCommentsActionPayload
 } from '@store/reducers/mainReducer/main.types.ts'
 import { FetchStatus } from '@/types/fetchStatus.ts'
 
-const mainSlice = createSlice({
-	name: 'main',
+const userSlice = createSlice({
+	name: 'user',
 	initialState: {
+		user: {} as IUser,
 		posts: [] as IPostWithComments[],
+		fetchUserStatus: FetchStatus.FETCHED,
 		fetchPostsStatus: FetchStatus.FETCHED,
-		fetchCommentsStatus: FetchStatus.FETCHED,
-		currentPage: 1,
-		pageSize: 5,
-		totalPosts: 0
+		fetchCommentsStatus: FetchStatus.FETCHED
 	},
 	reducers: {
-		toPage(state, { payload }: PayloadAction<number>) {
-			state.currentPage = payload
-		},
 		setComments(state, { payload }: PayloadAction<SetCommentsActionPayload>) {
 			const post = state.posts.find(post => post.id === payload.postId)
 			if (!post) return
 
 			post.comments = payload.comments
 		},
+		setUser(state, { payload }: PayloadAction<IUser>) {
+			state.user = payload
+		},
 		setPosts(state, { payload }: PayloadAction<IPostWithComments[]>) {
 			state.posts = payload
+		},
+		setFetchUserStatus(state, { payload }: PayloadAction<FetchStatus>) {
+			state.fetchUserStatus = payload
 		},
 		setFetchPostsStatus(state, { payload }: PayloadAction<FetchStatus>) {
 			state.fetchPostsStatus = payload
 		},
 		setFetchCommentsStatus(state, { payload }: PayloadAction<FetchStatus>) {
 			state.fetchCommentsStatus = payload
-		},
-		setTotalPosts(state, { payload }: PayloadAction<number>) {
-			state.totalPosts = payload
 		}
 	}
 })
 
-export const mainReducer = mainSlice.reducer
+export const userReducer = userSlice.reducer
 export const {
-	toPage,
-	setComments,
-	setPosts,
+	setUser,
+	setFetchUserStatus,
+	setFetchCommentsStatus,
 	setFetchPostsStatus,
-	setTotalPosts,
-	setFetchCommentsStatus
-} = mainSlice.actions
+	setPosts,
+	setComments
+} = userSlice.actions

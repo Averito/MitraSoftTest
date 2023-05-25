@@ -20,7 +20,7 @@ import {
 	fetchPosts
 } from '@store/reducers/mainReducer/main.actions.ts'
 import { FetchStatus } from '@/types/fetchStatus.ts'
-import { FetchCommentsActionPayload } from '@store/reducers/mainReducer/main.reducer.types.ts'
+import { FetchCommentsActionPayload } from '@store/reducers/mainReducer/main.types.ts'
 import { IComment } from '@api/entities/comment/comment.types.ts'
 
 export function* workerSaga({ payload }: PayloadAction<number | undefined>) {

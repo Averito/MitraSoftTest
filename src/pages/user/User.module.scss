@@ -1,0 +1,20 @@
+.postsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.userLoaderContainer {
+  min-height: 150px;
+}
+
+.loaderContainer {
+  min-height: 100%;
+}
+
+.userLoaderContainer, .loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

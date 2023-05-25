@@ -4,19 +4,25 @@ import { useDispatch } from 'react-redux'
 import styles from './Home.module.scss'
 import { MainLayout } from '@layouts/MainLayout'
 import { useAppSelector } from '@hooks/useAppSelector.ts'
-import { fetchPosts } from '@store/reducers/mainReducer/main.actions.ts'
+import {
+	fetchComments,
+	fetchPosts
+} from '@store/reducers/mainReducer/main.actions.ts'
 import { Loader, Pagination, Post } from '@components'
 import { FetchStatus } from '@/types/fetchStatus.ts'
 import { toPage } from '@store/reducers/mainReducer/main.reducer.ts'
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import { useInput } from '@hooks/useInput.ts'
-import { IPostWithComments } from '@store/reducers/mainReducer/main.reducer.types.ts'
+import { IPostWithComments } from '@store/reducers/mainReducer/main.types.ts'
 
 export const Home: FC = () => {
 	const dispatch = useDispatch()
 
 	const posts = useAppSelector(state => state.main.posts)
 	const fetchPostsStatus = useAppSelector(state => state.main.fetchPostsStatus)
+	const fetchCommentsStatus = useAppSelector(
+		state => state.main.fetchCommentsStatus
+	)
 	const currentPage = useAppSelector(state => state.main.currentPage)
 	const pageSize = useAppSelector(state => state.main.pageSize)
 	const totalPosts = useAppSelector(state => state.main.totalPosts)
@@ -25,6 +31,18 @@ export const Home: FC = () => {
 		if (posts.length > 0) return
 		dispatch(fetchPosts())
 	}, [])
+
+	const onOpenComments = (post: IPostWithComments) => {
+		return () => {
+			if (post.comments) return
+
+			dispatch(
+				fetchComments({
+					postId: post.id
+				})
+			)
+		}
+	}
 
 	const onChangePagination = (page: number) => {
 		dispatch(toPage(page))
@@ -86,7 +104,12 @@ export const Home: FC = () => {
 			) : (
 				<div className={styles.postsContainer}>
 					{filteredPosts.map(post => (
-						<Post key={post.id} post={post} />
+						<Post
+							key={post.id}
+							post={post}
+							commentsFetchStatus={fetchCommentsStatus}
+							onOpenComments={onOpenComments}
+						/>
 					))}
 				</div>
 			)}
