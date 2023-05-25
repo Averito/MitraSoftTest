@@ -73,7 +73,11 @@ export const Home: FC = () => {
 	}
 
 	useEffect(() => {
-		setFilteredPosts(() => posts.filter(post => post.title.includes(search)))
+		setFilteredPosts(() =>
+			posts.filter(post =>
+				post.title.toLowerCase().includes(search.toLowerCase())
+			)
+		)
 	}, [search, posts])
 
 	const fetchPostsStatusFetching = fetchPostsStatus === FetchStatus.FETCHING
