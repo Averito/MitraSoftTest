@@ -1,0 +1,50 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "extends": [
+    "prettier",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "prettier",
+    "react-refresh"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "warn",
+      {
+        "arrowParens": "avoid",
+        "useTabs": true,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "jsxSingleQuote": true,
+        "trailingComma": "none",
+        "semi": false,
+        "endOfLine": "auto",
+        "bracketSpacing": true,
+        "bracketSameLine": false,
+        "proseWrap": "never"
+      }
+    ],
+    "react/prop-types": 0,
+    "react/display-name": 0,
+    "react-hooks/exhaustive-deps": 0,
+    "import/no-anonymous-default-export": 0,
+    "complexity": [
+      "error",
+      25
+    ],
+    "no-unused-vars": 0,
+    "no-useless-catch": 0,
+    "react-refresh/only-export-components": "warn"
+  }
+}
