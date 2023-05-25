@@ -1,4 +1,5 @@
 import { QueryObject } from '@helpers/generateQueryString.ts'
+import { DefaultParamsPartial } from '@api/types.ts'
 
 export interface IPost {
 	userId: number
@@ -7,6 +8,6 @@ export interface IPost {
 	body: string
 }
 
-export interface GetAllPostsParams extends QueryObject {
+export interface GetAllPostsParams extends DefaultParamsPartial, QueryObject {
 	userId?: number | number[]
 }
