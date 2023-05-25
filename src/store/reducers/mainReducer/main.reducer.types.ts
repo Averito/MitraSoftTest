@@ -9,3 +9,7 @@ export interface SetCommentsActionPayload {
 	postId: number
 	comments: IComment[]
 }
+
+export interface FetchCommentsActionPayload {
+	postId: number
+}

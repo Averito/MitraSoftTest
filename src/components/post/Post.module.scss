@@ -1,0 +1,20 @@
+.avatarLink {
+  margin-right: 8px;
+}
+
+.postComments {
+  margin-top: 10px;
+}
+
+.commentsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loaderContainer {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}

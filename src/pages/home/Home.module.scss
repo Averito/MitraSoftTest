@@ -1,0 +1,18 @@
+.postsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+}
